@@ -1,5 +1,5 @@
-# Trusting-Skynet
-Tracking Repository of current and past works about Interpretable Machine Learning.
+# Trusting-Skynet: A Journey through Explainable Reinforcement Learning (XRL)
+Tracking Repository of current and past works about Interpretable Reinforcement Learning XRL.
 
 Explainable Methods with available code:
 
