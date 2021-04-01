@@ -1,0 +1,121 @@
+
+\documentclass[runningheads]{llncs}
+
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{booktabs} % For pretty tables
+\usepackage{caption} % For caption spacing
+\usepackage{subcaption} % For sub-figures
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage[all]{nowidow}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{er,positioning,bayesnet}
+\usepackage{multicol}
+\usepackage{algpseudocode,algorithm,algorithmicx}
+\usepackage{minted}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage[inline]{enumitem} % Horizontal lists
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
+
+\newcommand{\card}[1]{\left\vert{#1}\right\vert}
+\newcommand*\Let[2]{\State #1 $\gets$ #2}
+\definecolor{blue}{HTML}{1F77B4}
+\definecolor{orange}{HTML}{FF7F0E}
+\definecolor{green}{HTML}{2CA02C}
+
+\pgfplotsset{compat=1.14}
+
+\parskip 5mm
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\setlength{\floatsep}{3pt plus 1pt minus 1pt}
+\setlength{\textfloatsep}{5pt plus 1pt minus 1pt}
+\setlength{\intextsep}{3pt plus 1pt minus 1pt}
+\setlength{\abovecaptionskip}{2pt plus 1pt minus 1pt}
+
+\begin{document}
+%
+\title{Interpretable XRL}
+
+\author{Montenegro Meza Mauro \inst{1} \and
+Rolando Menchaca-Méndez.\inst{1} \and
+Ricardo Menchaca Méndez\inst{1}}
+
+\institute{Network and Data Science Laboratory, Centro de Investigación en Computación, Mexico City, México}
+%
+\maketitle              
+%
+\begin{abstract}
+
+
+\keywords{Reinforcement Learning \and XRL \and Interpretability}
+\end{abstract}
+
+\section{Introduction}
+
+In recent years, many accurate decision support systems have been constructed as black boxes, that is, as systems that hide their internal logic to the user. This lack of explanation constitutes both a practical and an ethical issue. The literature reports many approaches aimed at overcoming this crucial weakness, sometimes at the cost of sacrificing accuracy for interpretability.
+
+Besides the incremental set of explainable Artificial Intelligence (XAI) literature, there is a lack of work in Reinforcement Learning (RL) field.
+
+\section{Relevance of Interpretability}
+
+Before showing the classification addressed in literature regarding to Machine Learning models and his solutions framework categorization, we need to discuss about the concepts of knowledge and interpretability. To interpret means to give or provide the meaning or to explain and present in understandable terms some concepts. \footnote{www.merriam-webster.com} Currently, there is little consensus on what interpretability in machine learning is and how to evaluate it for benchmarking. Besides this fact, some authors try to give some general concept. For Doshi et. al. \cite{Doshi-velez2017}  interpretability is the ability to explain or to present in understandable terms to a human. These definitions assume implicitly that the concepts expressed in the understandable terms composing an explanation are self-contained and do not need further explanations. \cite{Guidotti2018}
+
+The aim of interpretability is to present knowledge embedded in the network in a way that a human can understand as stated before. But, although knowledge representation is one of the central and, in some ways, most familiar concepts in AI, the most fundamental question about it —What is it?— has rarely been answered directly. Davis et. al \cite{Cercone1987} argues that notion of knowledge representation can best understood in terms of five distinct roles. First, it works as a surrogate or substitute for the thing itself, and is used to enable an entity to determine consequences by thinking rather than acting. Second, it is a set of ontological commitments, that is, an answer to the question "In what terms should i think about the world?". Third, as a fragmentary theory of intelligent reasoning expressed in terms of:  the representation´s fundamental conception of intelligent reasoning, the set of inferences that representation sanctions and the ones that recommends. Fourth, knowledge representation is a medium for pragmatically efficient computation and, fifth, it is also a medium of human expression, that is, a language in which we say things about the world.
+
+A Machine Learning model often is referred as a "black box" or "obscure" model, whose internals are either unknown to the observer or they are known but uninterpretable to humans. So, taking account of our earlier discussion, making this model interpretable is to present as a surrogate the knowledge in a way that is clear to a human.
+
+To make an interpretable model, it is necessary to take into account some features mentioned in the state of the art \cite{Andrews1995} \cite{Doshi-velez2017} \cite{Freitas} and Guidotti et. al. \cite{Guidotti2018} remarks 3 of them:
+
+\begin{enumerate}
+    \item Interpretability: How much the model or its predictions are human understandable and how we can measure it. According to literature, we refer to this feature also with the name of comprehensibility.
+    \item Accuracy: To which extent the model accurately predicts new data.This feature can be measured using evaluations like the accuracy score or the F1-score \cite{tan2006introduction}. Most papers in literature aim to produce comprehensive models maintaining a high accuracy score. 
+    \item Fidelity: The model is able to accurate imitate the black-box predictions?. This fidelity feature captures how much of the original model this interpretation have. This could be measured as the accuracy but in terms of the outcome of the black-box model.
+\end{enumerate}
+
+Besides these features are the main goal of making a model comprehensive, we need to acknowledge some ethical issues. According to \cite{Andrews1995} \cite{Doshi-velez2017} fairness and privacy are important aspects when we are dealing with models that apply directly to people.
+
+The first principle requires that the model guarantees the protection of groups against (direct or indirect) discrimination \cite{romei2014multidisciplinary}; while the second one requires that the model does not reveal sensitive information about people \cite{aldeen2015comprehensive}. The level of interpretability of a model together with the standards of privacy and non-discrimination that are guaranteed may impact on how much human users trust that model.\cite{Guidotti2018}
+
+%Explain social and academic impact on design interpretable models for DRL. First, consider ethical and regulation issues (DGPR) and then, show improvements in algorithms making them interpretable. Also, i like to add some discussion about interpretable vs explainable methods and maybe compare(improvement in quality results or interpretable metrics) what approach brings more advantages.
+
+\section{Background}
+Explain DRL problem 
+
+\section{Related Work}
+
+\subsection{Global vs Local }
+Explanation of the total model or focus on a specific decision.
+
+\subsection{Transparent vs Post-Hoc }
+Model inherently interpretable or after train the model provide explanations trough a proxy.
+
+\section{Metrics}
+Review of some metrics used to measure explainability, interpretability.
+
+\subsection{Evaluating Explanations}
+Take a subset of relevant work in order to compare algorithms in terms of interpretability.
+
+\section{Conclusion}
+
+%
+% ---- Bibliography ----
+%
+% BibTeX users should specify bibliography style 'splncs04'.
+% References will then be sorted and formatted in the correct style.
+%
+\bibliographystyle{splncs04}
+\bibliography{biblio}
+%
+\end{document}
