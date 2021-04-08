@@ -1,4 +1,3 @@
-
 \documentclass[runningheads]{llncs}
 
 \usepackage{booktabs}
@@ -64,9 +63,16 @@ Ricardo Menchaca Méndez\inst{1}}
 
 \section{Introduction}
 
-In recent years, many accurate decision support systems have been constructed as black boxes, that is, as systems that hide their internal logic to the user. This lack of explanation constitutes both a practical and an ethical issue. The literature reports many approaches aimed at overcoming this crucial weakness, sometimes at the cost of sacrificing accuracy for interpretability.
+In recent years, many accurate decision support systems have been constructed as black boxes, that is, as systems that hide their internal logic to the user. This lack of explanation constitutes both a practical (harder to deploy) and an ethical issue. The literature reports many approaches aimed at overcoming this crucial weakness, sometimes at the cost of sacrificing accuracy for interpretability \cite{johansson2011trade}.
 
-Besides the incremental set of explainable Artificial Intelligence (XAI) literature, there is a lack of work in Reinforcement Learning (RL) field.
+Besides the incremental set of Explainable Artificial Intelligence (XAI) literature, there is a lack of work in Reinforcement Learning (RL) field. Recent works propose various RL interpretation methods and are applied to multiple tasks, but, while the main objective of all algorithms is to make interpretable models, each method has special purposes and has unique sets of limitations and challenges. This makes harder to make a clear classification of methods. Due to the above problem of classification and generality of methods comes another important challenge: Metrics for comparing algorithms, since accuracy is not the only relevant parameter when comes to interpretability. In XAI field there are some proposed quantitative and qualitative metrics (ref 1) (ref 2) (ref 3) that could be used in XRL.
+
+There are some papers that propose a classification on methods for interpretability in RL (ref1) (ref2) (ref3). There is a clear difference on the top level of any classification method: We modify the model to make it interpretable by itself or we use a surrogate to imitate their predictions?. This comes with a discussion about the ambiguity of interpretability meaning. Gilpin et al (ref) tried to explain differences between \textit{interpretability} (the answer for a why question) and \textit{explainability} (the ability to provide understandable explanations and process to the end user).
+
+The main goal of this paper is to list and compare different methods and metrics used to interpret RL and compare frameworks that are based on making a model interpretable or build a surrogate that explains its outcomes. On the top of that there is a discussion about the importance of making XRL and XAI for society and research community. 
+
+The rest of the paper is organized as follows: Section II provides a discussion about the relevance and need to make interpretable XAI and XRL for ethical issues and to improve algorithms. In Section III we develop the mathematical framework where RL is based: Markov Decision Processes and RL algorithms. Section IV illustrates the taxonomy existing in literature and metrics to evaluate their interpretability measures while making a clear distinction between interpretable architecture and explainable models. In Section V we provide relevant interpretable and explainable methods in literature and apply metrics to evaluate their performance. Finally, Section VI gives the conclusion of the paper.
+
 
 \section{Relevance of Interpretability}
 
@@ -91,9 +97,39 @@ The first principle requires that the model guarantees the protection of groups 
 %Explain social and academic impact on design interpretable models for DRL. First, consider ethical and regulation issues (DGPR) and then, show improvements in algorithms making them interpretable. Also, i like to add some discussion about interpretable vs explainable methods and maybe compare(improvement in quality results or interpretable metrics) what approach brings more advantages.
 
 \section{Background}
-Explain DRL problem 
+
+Reinforcement Learning (RL) is an emerging field of Machine Learning (ML) that gives solutions to problems where the main objective is wrapped in a Markov Decision Process (MDP). It involves the study of agents that interact with a dynamic  environment through actions, and the goal is to optimize a cumulative reward over time.
+
+MDP is a mathematical framework used to solve control decision processes. All the states should satisfy the Markov Property: The resultant state of any action does not depend on the history, instead it only depends on the current state.
+
+We describe this process as follows: A state $s \in S$ for the agent in the environment, it can choose any valid action $a \in A(s)$. Taking an action changes the agent state from $s$ to $s'$ and following a transition $T$, this process comes with a reward $R(s,a)$. Mathematically an MDP is a tuple of $(S,A,T,R,\gamma)$. Future rewards are penalized by the factor $\gamma$. 
+
+When the state is not fully observable by the agent, MDP becomes a Partially Observable Markov Decision Process (POMDP) defined by the tuple  $(S , A , T , R , \Omega , O , \gamma$) where $\Omega$ and $O$ are the set of all observations and the set of observation probabilities.
+
+A policy $\pi$ can be defined as the strategy that the agent follows, a mapping between agent states and action at that state. A policy could be deterministic or non-deterministic. Under a a probabilistic format, this mapping is represented by Equation \ref{eq:1}:
+
+\begin{equation}
+\label{eq:1}
+\pi(a|s) = Pr(a_t=a|s_t=s)    
+\end{equation}
+
+
+An optimal policy is the one that maximizes or minimizes the cumulative discounted reward described by the Equation \ref{eq:2}. This optimization can be formulated using the Bellman Equation \ref{eq:3} which express the optimal policy for a given state $s$.
+
+\begin{equation}
+\label{eq:2}
+    V(s)=E[\sum_{t=1}^{T}\gamma^{t-1}r]
+\end{equation}
+
+\begin{equation}
+\label{eq:3}
+    \pi^*(s)=argmax_a \sum_{s' \in S}T(s,a,s')V^{\pi ^*}(s')
+\end{equation}
+
 
 \section{Related Work}
+
+
 
 \subsection{Global vs Local }
 Explanation of the total model or focus on a specific decision.
